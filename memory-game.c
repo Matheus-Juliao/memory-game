@@ -54,38 +54,38 @@ char chooseLetter() {
 }
 
 void userPlayMenu() {
-    printf("\t\t\tJogo de memoria\n");
+    printf("\t\t\tJogo de memória\n");
     printf("\t\t\t***GENIUS C***\n\n");
-    printf("\t\t\t***Usuario Joga***\n\n");
+    printf("\t\t\t***Usuário Joga***\n\n");
     printf("\t\t   Informe uma letra entre A e Z: ");
 }
 
 void computerPlayMenu(int numberLetter) {
-    printf("\t\t\tJogo de memoria\n");
+    printf("\t\t\tJogo de memória\n");
     printf("\t\t\t***GENIUS C***\n\n");
     printf("\t\t\t***Programa Joga***\n\n");
     printf("\t\t   Letra selecionada pelo programa: %c\n\n", numberLetter);
-    printf("\t\t   Voce tem 3 segundos para memorizar!");
+    printf("\t\t   Você tem 3 segundos para memorizar!");
     Sleep(3000);
 }
 
 void userRepeatSequenceMenu() {
-    printf("\t\t\tJogo de memoria\n");
+    printf("\t\t\tJogo de memória\n");
     printf("\t\t\t***GENIUS C***\n\n");
-    printf("\t\t\t***Usuario Repete a Sequencia***\n\n");
-    printf("\t\tInforme a sequencia de letras ate o momento iniciando\n\t\tpela ultima letra informada ate a primeira: ");
+    printf("\t\t\t***Usuário Repete a Sequencia***\n\n");
+    printf("\t\tInforme a sequência de letras até o momento iniciando\n\t\tpela última letra informada até a primeira: ");
 }
 
 void gameOverMenu() {
-    printf("\t\t\tJogo de memoria\n");
+    printf("\t\t\tJogo de memória\n");
     printf("\t\t\t***GENIUS C***\n\n");
     printf("\t\t\t***Final de Jogo***\n\n");
-    printf("\t\tA sequencia de letras ate o momento foi: ");
+    printf("\t\tA sequência de letras até o momento foi: ");
     
 }
 
 void showPoints(int points) {
-    printf("\t\t    A sua pontuacao foi: %d pontos!\n", points);
+    printf("\t\t    A sua pontuação foi: %d pontos!\n", points);
 }
 
 int generateRandomLetter() {
@@ -104,12 +104,12 @@ int compareSequence(int cont, struct no *top, int points) {
     //printf("%d", typedSequence[0]);
     status = query(top, typedSequence);
     if(status == 1) {
-        printf("\n\t\t     Sequencia certa! Ganhou 10 pontos!");
+        printf("\n\t\t     Sequência certa! Ganhou 10 pontos!");
         points += 10;
         Sleep(3000);
     } else {
         if(status == 0) {
-            printf("\n\t\t     Sequencia errada! Fim de Jogo!");
+            printf("\n\t\t     Sequência errada! Fim de Jogo!");
             Sleep(3000);
             system("cls");
             gameOverMenu();
