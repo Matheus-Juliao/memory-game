@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define NUM_STRINGS 100
 
 // Create data structure for Node
 struct no {
@@ -38,26 +37,36 @@ void push(int valor, struct no **t) {
 // List the stack
 int query(struct no *t, char *storedString) {
 	int size = strlen(storedString);
-	int cont = 0;
-	int result;
+	int numberLetter;
 	if (t == NULL){
 		printf("Pilha Vazia \n");
-		return 1;
+		return -1;
 	} else {
 		do {
-			result = 0;
-			cont++;
-			if(result == 0) {
-				t = t->next;
-				if(cont == size) {
-					
+			for(int i = 0; i < size; i++) {
+				numberLetter = storedString[i];
+				if(numberLetter == t->elem) {
+					t = t->next;
+				} else {
+					return 0;
 				}
-			}	else {
-					return 1;
-				}
+			}
 		} while(t != NULL);
-		return 0;
+		return 1;
 	}
+}
+
+// Show List the stack
+void showAndClearStack(struct no *t, struct no **tt) {
+	struct no *aux;
+	do {
+		printf("%c", t->elem);
+		t = t->next;
+		aux = (*tt);
+		(*tt)=(*tt)->next;
+		free(aux);
+	} while(t != NULL);
+	printf("\n\n");
 }
 
 #endif // QUEUE_LETTERS_H_INCLUDED

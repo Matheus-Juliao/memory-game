@@ -5,14 +5,15 @@
 #include <windows.h>
 #include <time.h>
 #include "queue_letters.h"
-#define NUM_STRINGS 100
 
 char chooseLetter();
 void userPlayMenu();
-int generateRandomLetter();
 void computerPlayMenu(int numberLetter);
 void userRepeatSequenceMenu();
-void compareSequence(int cont, struct no *top);
+void gameOverMenu();
+void showPoints(int points);
+int generateRandomLetter();
+int compareSequence(int cont, struct no *top, int points);
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
@@ -21,7 +22,6 @@ int main() {
     struct no *top = NULL;
     // Variables
     int numberLetter, start=1, cont=0, points=0;
-    //int x;
 
     while(start == 1) {
         userPlayMenu();
@@ -37,11 +37,12 @@ int main() {
         system("cls");
 
         userRepeatSequenceMenu();
-        compareSequence(cont, top);
-        points += 10;
+        points = compareSequence(cont, top, points);
+        system("cls");
+        if(points == -1) {
+            start = 0;
+        }
     } 
-    
-    printf("\n\n\n\n");
 }
 
 char chooseLetter() {
@@ -75,6 +76,18 @@ void userRepeatSequenceMenu() {
     printf("\t\tInforme a sequencia de letras ate o momento iniciando\n\t\tpela ultima letra informada ate a primeira: ");
 }
 
+void gameOverMenu() {
+    printf("\t\t\tJogo de memoria\n");
+    printf("\t\t\t***GENIUS C***\n\n");
+    printf("\t\t\t***Final de Jogo***\n\n");
+    printf("\t\tA sequencia de letras ate o momento foi: ");
+    
+}
+
+void showPoints(int points) {
+    printf("\t\t    A sua pontuacao foi: %d pontos!\n", points);
+}
+
 int generateRandomLetter() {
     srand(time(NULL));
     int letter=0;
@@ -83,17 +96,30 @@ int generateRandomLetter() {
     return letter;
 }
 
-void compareSequence(int cont, struct no *top) {
+int compareSequence(int cont, struct no *top, int points) {
     char typedSequence[cont];
     int status;
     scanf("%s", typedSequence);
+    fflush(stdin);
+    //printf("%d", typedSequence[0]);
     status = query(top, typedSequence);
-    if(status == 0) {
-        printf("\n\t\t     Certa a sequencia! Ganhou 10 pontos!");
-        system("pause>NULL");
-    } else{
-        printf("errou");
-        system("pause>NULL");
+    if(status == 1) {
+        printf("\n\t\t     Sequencia certa! Ganhou 10 pontos!");
+        points += 10;
+        Sleep(3000);
+    } else {
+        if(status == 0) {
+            printf("\n\t\t     Sequencia errada! Fim de Jogo!");
+            Sleep(3000);
+            system("cls");
+            gameOverMenu();
+            showAndClearStack(top, &top);
+            showPoints(points);
+            system("pause>NULL");
+            points = -1;
+        }
+        points += 0;
     }
-    
+
+    return points;  
 }
