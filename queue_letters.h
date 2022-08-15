@@ -19,7 +19,6 @@ int empty(struct no *t) {
 	}
 }
 
-
 // Insert node on stack
 void push(int valor, struct no **t) {
 	struct no *next;
