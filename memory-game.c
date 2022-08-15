@@ -38,9 +38,10 @@ int main() {
 
         userRepeatSequenceMenu();
         points = compareSequence(cont, top, points);
-        system("cls");
         if(points == -1) {
             start = 0;
+        } else {
+            system("cls");   
         }
     }
 }
@@ -125,7 +126,8 @@ int compareSequence(int cont, struct no *top, int points) {
             gameOverMenu();
             showAndClearStack(top, &top);
             showPoints(points);
-            system("PAUSE");
+            //system("PAUSE");
+            getchar();
             points = -1;
         }
         points += 0;
