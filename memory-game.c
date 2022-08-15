@@ -125,7 +125,7 @@ int compareSequence(int cont, struct no *top, int points) {
             gameOverMenu();
             showAndClearStack(top, &top);
             showPoints(points);
-            system("pause");
+            system("PAUSE");
             points = -1;
         }
         points += 0;
